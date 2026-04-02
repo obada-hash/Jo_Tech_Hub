@@ -13,7 +13,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> handleRuntimeException(final RuntimeException e) {
         String message = e.getMessage();
-        message+= "fuck you don't know what you are doing!";
         return new ResponseEntity<>(message, HttpStatus.CONFLICT);
     }
 }
