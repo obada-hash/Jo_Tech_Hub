@@ -6,6 +6,7 @@ import berserk.jo_tech_hub.Dto.CategoryDto;
 import berserk.jo_tech_hub.entity.Category;
 import berserk.jo_tech_hub.mapper.CategoryMapper;
 import berserk.jo_tech_hub.service.CategoryService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,16 +23,17 @@ public class CategoryController {
     private final CategoryMapper categoryMapper;
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll() {
-        return new ResponseEntity<>(categoryService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<CategoryDto>> findAll() {
+        List<CategoryDto> listToReturn = categoryService.findAll().stream()
+                .map(categoryMapper::toDto)
+                .toList();
+        return new ResponseEntity<>(listToReturn, HttpStatus.OK);
     }
 
-
     @PostMapping
-    public ResponseEntity<CategoryDto> create(@RequestBody CategoryCreateRequest request) {
+    public ResponseEntity<CategoryDto> create(
+            @Valid @RequestBody CategoryCreateRequest request) {
         CategoryDto dto = categoryMapper.toDto(categoryService.save(request));
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
-
-
 }

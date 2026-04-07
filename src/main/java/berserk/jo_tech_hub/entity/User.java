@@ -26,8 +26,8 @@ public class User {
     private String phoneNumber;
     private String password;
 
-    @ManyToOne
-    private Ticket ticket;
+//    @ManyToOne
+//    private Ticket ticket;
 
 //    @OneToMany(mappedBy = "post")
 //    private List<Ticket> tickets;

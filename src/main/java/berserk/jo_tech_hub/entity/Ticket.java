@@ -15,11 +15,11 @@ public class Ticket {
     private String phoneNumber;
     private String bio;
 
-//    @ManyToOne
-//    private Post post;
-//
-//    @ManyToOne
-//    private User user;
+    @ManyToOne
+    private Post post;
+
+    @ManyToOne
+    private User user;
 
 
 
