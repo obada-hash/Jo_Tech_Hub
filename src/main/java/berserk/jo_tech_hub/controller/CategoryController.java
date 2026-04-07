@@ -23,7 +23,7 @@ public class CategoryController {
     private final CategoryMapper categoryMapper;
 
     @GetMapping
-    public ResponseEntity<List<CategoryDto>> findAll() {
+    public ResponseEntity<List<CategoryDto>> findAll() { // file edited
         List<CategoryDto> listToReturn = categoryService.findAll().stream()
                 .map(categoryMapper::toDto)
                 .toList();
